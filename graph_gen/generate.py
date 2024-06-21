@@ -23,8 +23,6 @@ def generate_graph(north, south, east, west):
     G = add_missing_spd(G)
     G = spd_ox2bs(G)
     graph_file = f'{city}.graphml'
-    graph_folder = '/graphs'
-    os.chdir(os.getcwd() + graph_folder)
     ox.save_graphml(G, graph_file)
     return graph_file
 
