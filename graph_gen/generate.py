@@ -1,4 +1,4 @@
-from utils import add_missing_spd, simplify_graph, get_city_from_bbox, spd_ox2bs
+from .utils import add_missing_spd, simplify_graph, get_city_from_bbox, spd_ox2bs
 import osmnx as ox
 import argparse
 import os
