@@ -1,4 +1,4 @@
-from .utils import add_missing_spd, simplify_graph, get_city_from_bbox, spd_ox2bs
+from .utils import add_missing_spd, simplify_graph, get_city_from_bbox, add_spds
 import osmnx as ox
 import argparse
 import os
@@ -21,7 +21,8 @@ def generate_graph(north, south, east, west):
     city = get_city_from_bbox(north, south, east, west)
     G = simplify_graph(G)
     G = add_missing_spd(G)
-    G = spd_ox2bs(G)
+    G = add_spds(G)
+    G = ox.routing.add_edge_travel_times(G)
     graph_file = f'{city}.graphml'
     ox.save_graphml(G, graph_file)
     return graph_file

@@ -37,7 +37,7 @@ def add_missing_spd(G):
 
     return G
 
-def spd_ox2bs(G):
+def add_spds(G):
     """
     Add a new attribute 'maxspeed_kts' to each edge in the graph based on the 'maxspeed' attribute.
     This must be used in Bluesky, values have to be in kts.
@@ -53,10 +53,14 @@ def spd_ox2bs(G):
         if maxspeed is not None:
             maxspeed_kts = spdlim_ox2bs(maxspeed)
             data['maxspeed_kts'] = maxspeed_kts
+            data['speed_kph'] = kts2kph(maxspeed_kts)
         else:
             raise AttributeError(f"Something went wrong, attribute maxspeed not found for edge {u, v}")
 
     return G
+
+def kts2kph(kts):
+    return kts*1.852
 
 def spdlim_ox2bs(spdlim):
     """
