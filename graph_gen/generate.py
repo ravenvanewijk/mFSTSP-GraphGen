@@ -3,7 +3,7 @@ import osmnx as ox
 import argparse
 import os
 
-def generate_graph(north, south, east, west):
+def generate_graph(north, south, east, west, city):
     """
     Generate and save an OSM graph based on bounding box limits.
 
@@ -18,7 +18,6 @@ def generate_graph(north, south, east, west):
     """
     lims = (north, south, east, west)
     G = ox.graph_from_bbox(bbox=lims, network_type='drive')
-    city = get_city_from_bbox(north, south, east, west)
     G = simplify_graph(G)
     G = add_missing_spd(G)
     G = add_spds(G)
